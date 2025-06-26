@@ -56,11 +56,11 @@ const StarRating: React.FC<StarRatingProps> = ({
       {/* Layer 1: Background (empty stars) */}
       <div className="flex items-center" aria-hidden="true">
         {[...Array(totalStars)].map((_, i) => (
-          <Star key={`empty-${i}`} size={size} className="text-muted" fill="currentColor" />
+          <Star key={`empty-${i}`} size={size} className="text-gray-300" fill="currentColor" />
         ))}
       </div>
 
-      {/* Layer 2: Foreground (filled stars), clipped to the rating percentage */}\
+      {/* Layer 2: Foreground (filled stars), clipped to the rating percentage */}
       <div
         className="absolute top-0 left-0 h-full overflow-hidden whitespace-nowrap"
         style={{ width: fillWidth }}
@@ -69,7 +69,7 @@ const StarRating: React.FC<StarRatingProps> = ({
         <div className="flex items-center">
           {[...Array(totalStars)].map((_, i) => (
             <Star key={`filled-${i}`} size={size} className="text-yellow-400" fill="currentColor" />
-          ))}\
+          ))}
         </div>
       </div>
 
