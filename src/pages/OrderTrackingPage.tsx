@@ -49,7 +49,7 @@ const OrderTrackingPage = () => {
 
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50/50">
+    <div className="flex flex-col min-h-screen bg-muted/40">
       <Header />
       <main className="flex-1 py-8 px-4 md:px-8">
         <div className="container mx-auto">
@@ -69,7 +69,7 @@ const OrderTrackingPage = () => {
                 <CardContent>
                   <div className="flex items-center justify-center bg-muted rounded-md h-80 text-muted-foreground">
                     <div className="text-center">
-                      <Map className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                      <Map className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
                       <h3 className="font-semibold">Map Feature Coming Soon</h3>
                       <p className="text-sm">We're working on bringing you live tracking.</p>
                     </div>
