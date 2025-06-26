@@ -71,7 +71,7 @@ const OrderTracker: React.FC<OrderTrackerProps> = ({ currentStatus, className })
                       "bg-muted": isPending,
                     }
                   )} />
-                )}
+                )}\
               </React.Fragment>
             );
           })}
