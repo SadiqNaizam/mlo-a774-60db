@@ -44,8 +44,8 @@ const OrderTracker: React.FC<OrderTrackerProps> = ({ currentStatus, className })
                     className={cn(
                       "flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 transition-colors duration-300",
                       {
-                        "bg-green-500 border-green-500 text-white": isCompleted || isActive,
-                        "bg-gray-100 border-gray-300 text-gray-400": isPending,
+                        "bg-secondary border-secondary text-secondary-foreground": isCompleted || isActive,
+                        "bg-muted border-border text-muted-foreground": isPending,
                       }
                     )}
                   >
@@ -55,8 +55,8 @@ const OrderTracker: React.FC<OrderTrackerProps> = ({ currentStatus, className })
                     className={cn(
                       "mt-2 text-xs sm:text-sm font-medium",
                       {
-                        "text-green-600": isCompleted || isActive,
-                        "text-gray-500": isPending,
+                        "text-secondary": isCompleted || isActive,
+                        "text-muted-foreground": isPending,
                       }
                     )}
                   >
@@ -67,8 +67,8 @@ const OrderTracker: React.FC<OrderTrackerProps> = ({ currentStatus, className })
                   <div className={cn(
                     "flex-1 h-1 mx-2 transition-colors duration-300",
                     {
-                      "bg-green-500": isCompleted || isActive,
-                      "bg-gray-200": isPending,
+                      "bg-secondary": isCompleted || isActive,
+                      "bg-muted": isPending,
                     }
                   )} />
                 )}
