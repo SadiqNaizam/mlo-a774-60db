@@ -72,14 +72,14 @@ const RestaurantListingPage: React.FC = () => {
   console.log('RestaurantListingPage loaded');
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50/50">
+    <div className="flex flex-col min-h-screen bg-muted/40">
       <Header />
       <main className="flex-grow">
         <div className="container py-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Find Your Next Meal</h1>
             <p className="text-muted-foreground mt-2">
-              Showing results for <span className="text-primary font-semibold">"sushi"</span>
+              Showing results for <span className="text-primary font-semibold">\"sushi\"</span>
             </p>
           </div>
           
@@ -149,7 +149,7 @@ const RestaurantListingPage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {restaurants.map((restaurant) => (
                   <RestaurantCard key={restaurant.slug} {...restaurant} />
-                ))}
+                ))}\
               </div>
 
               {/* Pagination */}
