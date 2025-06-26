@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 // Import Custom Components
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import CartSummary from '@/components/CartSummary';
 
 // Import shadcn/ui Components
 import { Button } from "@/components/ui/button";
@@ -24,9 +23,9 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Separator } from '@/components/ui/separator';
 import { CreditCard, Wallet, Home, Phone, User } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
-
 
 // Form validation schema
 const formSchema = z.object({
@@ -42,10 +41,35 @@ const formSchema = z.object({
   promoCode: z.string().optional(),
 });
 
+// Mock data for order summary
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  imageUrl?: string;
+}
+const initialCartItems: CartItem[] = [
+  { id: '1', name: 'Margherita Pizza', price: 12.99, quantity: 1, imageUrl: 'https://placehold.co/100x100/FFC107/000000?text=Pizza' },
+  { id: '2', name: 'Caesar Salad', price: 8.50, quantity: 2, imageUrl: 'https://placehold.co/100x100/4CAF50/FFFFFF?text=Salad' },
+  { id: '3', name: 'Coke Zero', price: 2.50, quantity: 1, imageUrl: 'https://placehold.co/100x100/F44336/FFFFFF?text=Drink' },
+];
+
+
 const CheckoutPage: React.FC = () => {
   console.log('CheckoutPage loaded');
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const [cartItems] = useState<CartItem[]>(initialCartItems);
+
+  const subtotal = useMemo(() => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  }, [cartItems]);
+
+  const deliveryFee = 2.99;
+  const taxes = subtotal * 0.08;
+  const total = subtotal + deliveryFee + taxes;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -96,14 +120,14 @@ const CheckoutPage: React.FC = () => {
                     <FormField control={form.control} name="fullName" render={({ field }) => (
                       <FormItem className="md:col-span-2">
                         <FormLabel>Full Name</FormLabel>
-                        <FormControl><Input placeholder="John Doe" {...field} icon={User} /></FormControl>
+                        <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="address" render={({ field }) => (
                       <FormItem className="md:col-span-2">
                         <FormLabel>Street Address</FormLabel>
-                        <FormControl><Input placeholder="123 Foodie Lane" {...field} icon={Home} /></FormControl>
+                        <FormControl><Input placeholder="123 Foodie Lane" {...field} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
@@ -117,7 +141,7 @@ const CheckoutPage: React.FC = () => {
                       <FormItem><FormLabel>ZIP Code</FormLabel><FormControl><Input placeholder="90210" {...field} /></FormControl><FormMessage /></FormItem>
                     )} />
                     <FormField control={form.control} name="phone" render={({ field }) => (
-                      <FormItem><FormLabel>Phone Number</FormLabel><FormControl><Input type="tel" placeholder="(123) 456-7890" {...field} icon={Phone}/></FormControl><FormMessage /></FormItem>
+                      <FormItem><FormLabel>Phone Number</FormLabel><FormControl><Input type="tel" placeholder="(123) 456-7890" {...field} /></FormControl><FormMessage /></FormItem>
                     )} />
                   </CardContent>
                 </Card>
@@ -182,11 +206,49 @@ const CheckoutPage: React.FC = () => {
                 <div className="sticky top-24">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Your Order</CardTitle>
+                      <CardTitle>Order Summary</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      {/* CartSummary is used here as per layout requirements */}
-                      <CartSummary />
+                      <div className="space-y-4">
+                        <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
+                          {cartItems.map((item) => (
+                            <div key={item.id} className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <img
+                                  src={item.imageUrl}
+                                  alt={item.name}
+                                  className="w-12 h-12 rounded-md object-cover"
+                                />
+                                <div>
+                                  <p className="font-medium">{item.name}</p>
+                                  <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
+                                </div>
+                              </div>
+                              <p className="font-medium text-sm">${(item.price * item.quantity).toFixed(2)}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <Separator />
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between">
+                            <p className="text-muted-foreground">Subtotal</p>
+                            <p className="font-medium">${subtotal.toFixed(2)}</p>
+                          </div>
+                          <div className="flex justify-between">
+                            <p className="text-muted-foreground">Delivery Fee</p>
+                            <p className="font-medium">${deliveryFee.toFixed(2)}</p>
+                          </div>
+                          <div className="flex justify-between">
+                            <p className="text-muted-foreground">Taxes & Fees</p>
+                            <p className="font-medium">${taxes.toFixed(2)}</p>
+                          </div>
+                        </div>
+                        <Separator />
+                        <div className="flex justify-between font-bold text-base">
+                          <p>Total</p>
+                          <p>${total.toFixed(2)}</p>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
