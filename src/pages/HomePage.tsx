@@ -63,7 +63,7 @@ const HomePage = () => {
               <Input
                 type="search"
                 placeholder="Enter restaurant or cuisine..."
-                className="rounded-r-none h-12 text-lg text-black"
+                className="rounded-r-none h-12 text-lg"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -88,7 +88,7 @@ const HomePage = () => {
                                 </div>
                             </CardContent>
                         </Card>
-                    ))}
+                    ))}\
                 </div>
             </div>
         </section>
@@ -111,7 +111,7 @@ const HomePage = () => {
                       <RestaurantCard {...restaurant} />
                     </div>
                   </CarouselItem>
-                ))}
+                ))}\
               </CarouselContent>
               <CarouselPrevious />
               <CarouselNext />
@@ -126,7 +126,7 @@ const HomePage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                  {popularRestaurants.map((restaurant, index) => (
                     <RestaurantCard key={index} {...restaurant} />
-                ))}
+                ))}\
             </div>
           </div>
         </section>
