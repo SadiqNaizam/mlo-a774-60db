@@ -40,7 +40,7 @@ const RestaurantMenuPage: React.FC = () => {
   console.log('RestaurantMenuPage loaded');
 
   return (
-    <div className="flex flex-col min-h-screen bg-muted/40">
+    <div className="flex flex-col min-h-screen bg-muted">
       <Header />
 
       <main className="flex-grow">
@@ -61,7 +61,7 @@ const RestaurantMenuPage: React.FC = () => {
                 <h1 className="text-3xl md:text-4xl font-bold">{restaurantData.name}</h1>
                 <div className="flex items-center gap-4 text-muted-foreground mt-2">
                   <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                    <Star className="w-4 h-4 text-primary fill-primary" />
                     <span className="font-semibold text-foreground">{restaurantData.rating}</span>
                     <span>({restaurantData.reviews} reviews)</span>
                   </div>
@@ -74,7 +74,7 @@ const RestaurantMenuPage: React.FC = () => {
               <div className="flex gap-2 mt-4 sm:mt-0">
                 {restaurantData.cuisine.map((tag) => (
                   <Badge key={tag} variant="secondary">{tag}</Badge>
-                ))}\
+                ))}
               </div>
             </div>
           </Card>
@@ -93,17 +93,17 @@ const RestaurantMenuPage: React.FC = () => {
                 </TabsList>
                 <TabsContent value="appetizers" className="mt-6">
                   <div className="grid gap-4">
-                    {menu.appetizers.map(item => <MenuItemCard key={item.id} {...item} />)}\
+                    {menu.appetizers.map(item => <MenuItemCard key={item.id} {...item} />)}
                   </div>
                 </TabsContent>
                 <TabsContent value="mainCourses" className="mt-6">
                   <div className="grid gap-4">
-                    {menu.mainCourses.map(item => <MenuItemCard key={item.id} {...item} />)}\
+                    {menu.mainCourses.map(item => <MenuItemCard key={item.id} {...item} />)}
                   </div>
                 </TabsContent>
                 <TabsContent value="desserts" className="mt-6">
                   <div className="grid gap-4">
-                     {menu.desserts.map(item => <MenuItemCard key={item.id} {...item} />)}\
+                     {menu.desserts.map(item => <MenuItemCard key={item.id} {...item} />)}
                   </div>
                 </TabsContent>
               </Tabs>
