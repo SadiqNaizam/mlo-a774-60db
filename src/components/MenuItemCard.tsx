@@ -58,7 +58,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
         </div>
 
         <div className="flex items-end justify-between mt-4">
-          <span className="text-xl font-semibold text-gray-900">${price.toFixed(2)}</span>
+          <span className="text-xl font-semibold text-foreground">${price.toFixed(2)}</span>
           <div className="flex items-center gap-2">
             <Dialog>
               <DialogTrigger asChild>
