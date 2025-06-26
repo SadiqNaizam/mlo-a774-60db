@@ -72,14 +72,14 @@ const RestaurantListingPage: React.FC = () => {
   console.log('RestaurantListingPage loaded');
 
   return (
-    <div className="flex flex-col min-h-screen bg-muted/40">
+    <div className="flex flex-col min-h-screen bg-muted/[.50]">
       <Header />
       <main className="flex-grow">
         <div className="container py-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Find Your Next Meal</h1>
             <p className="text-muted-foreground mt-2">
-              Showing results for <span className="text-primary font-semibold">\"sushi\"</span>
+              Showing results for <span className="text-primary font-semibold">"sushi"</span>
             </p>
           </div>
           
