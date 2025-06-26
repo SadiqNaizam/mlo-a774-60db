@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
 import { UtensilsCrossed, Search, ShoppingCart, CircleUser } from 'lucide-react';
-import CartSummary from '@/components/CartSummary';
+import { CartSummary } from '@/components/CartSummary';
 
 const Header: React.FC = () => {
   console.log('Header loaded');
@@ -44,11 +44,13 @@ const Header: React.FC = () => {
                 <span className="sr-only">Open Cart</span>
               </Button>
             </SheetTrigger>
-            <SheetContent className="flex flex-col p-0">
-              <SheetHeader className="p-4 border-b">
+            <SheetContent>
+              <SheetHeader>
                 <SheetTitle>Your Cart</SheetTitle>
               </SheetHeader>
-              <CartSummary />
+              <div className="py-4">
+                <CartSummary />
+              </div>
             </SheetContent>
           </Sheet>
 
