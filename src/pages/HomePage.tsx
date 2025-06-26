@@ -63,7 +63,7 @@ const HomePage = () => {
               <Input
                 type="search"
                 placeholder="Enter restaurant or cuisine..."
-                className="rounded-r-none h-12 text-lg"
+                className="rounded-r-none h-12 text-lg text-black"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -75,7 +75,7 @@ const HomePage = () => {
         </section>
 
         {/* Categories Section */}
-        <section className="py-12 md:py-16 bg-muted/20">
+        <section className="py-12 md:py-16 bg-muted/[.20]">
             <div className="container">
                 <h2 className="text-3xl font-bold text-center mb-8">Explore by Category</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -88,7 +88,7 @@ const HomePage = () => {
                                 </div>
                             </CardContent>
                         </Card>
-                    ))}\
+                    ))}
                 </div>
             </div>
         </section>
@@ -120,13 +120,13 @@ const HomePage = () => {
         </section>
 
         {/* Popular Restaurants Grid */}
-         <section className="py-12 md:py-16 bg-muted/20">
+         <section className="py-12 md:py-16 bg-muted/[.20]">
           <div className="container">
             <h2 className="text-3xl font-bold mb-8">Popular Near You</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                  {popularRestaurants.map((restaurant, index) => (
                     <RestaurantCard key={index} {...restaurant} />
-                ))}\
+                ))}
             </div>
           </div>
         </section>
